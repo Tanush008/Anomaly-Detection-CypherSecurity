@@ -1,0 +1,11 @@
+pandas
+numpy
+faker
+scikit-learn
+xgboost
+shap
+streamlit
+plotly
+joblib
+tensorflow
+reportlab
