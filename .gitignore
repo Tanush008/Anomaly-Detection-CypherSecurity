@@ -16,7 +16,6 @@ __pycache__/
 *.pyd
 
 data/access_logs.csv
-data/scored_logs.csv
 
 # ------------------------------------------------------------
 # Saved model artifacts

@@ -1,0 +1,46 @@
+services:
+
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: anomaly-v3:latest
+    container_name: anomaly-trainer
+    command: ["python", "src/train.py"]
+    volumes:
+      - anomaly_data:/app/data
+      - anomaly_models:/app/models_saved
+    environment:
+      - TF_CPP_MIN_LOG_LEVEL=2
+      - TF_ENABLE_ONEDNN_OPTS=0
+    restart: "no"
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: anomaly-v3:latest
+    container_name: anomaly-dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - anomaly_data:/app/data
+      - anomaly_models:/app/models_saved
+    environment:
+      - TF_CPP_MIN_LOG_LEVEL=2
+      - TF_ENABLE_ONEDNN_OPTS=0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+volumes:
+  anomaly_data:
+    name: anomaly_data
+  anomaly_models:
+    name: anomaly_models
