@@ -353,9 +353,9 @@ All 15 features are **causal** — computed only from an event and what preceded
 
 The system includes a fully interactive Streamlit dashboard designed with a deliberately calm, human-centric aesthetic (warm slate tones, legible typography) rather than harsh, high-contrast defaults. This ensures analysts can monitor risk for hours without eye strain.
 
-> **Note:** To add screenshots to this README, save the images into an `assets/` folder in this repository, and uncomment the image links below!
+> **Note:** The screenshots below showcase the actual dashboard interface built for this project.
 
-<!-- ![Dashboard Main View](assets/dashboard_main.png) -->
+![Dashboard Main View](assests/dashboard.png)
 
 ```bash
 streamlit run dashboard/app.py
@@ -370,15 +370,15 @@ streamlit run dashboard/app.py
    Real-time metrics focusing on out-of-time precision. We explicitly show the model's accuracy on *held-out data* so analysts know exactly how trustworthy the alerts are.
 
 2. **Simulated Live Replay Feed**
-   <!-- ![Live Feed](assets/dashboard_feed.png) -->
+   ![Live Feed](assests/dashboard1.png)
    A chronological stream of events dynamically color-coded by risk (🔴 Critical, 🟡 Warning, 🟢 Safe). Demonstrates how the system surfaces anomalies instantly in a live environment.
 
 3. **Triage & Alert Table**
-   <!-- ![Alert Table](assets/dashboard_alerts.png) -->
+   ![Alert Table](assests/dashboard2.png)
    A filterable view of all flagged events, including the **human-readable explanation** combining triggered rules and SHAP feature attributions.
 
 4. **Entity Drill-down & Timeline**
-   <!-- ![Entity Drilldown](assets/dashboard_drilldown.png) -->
+   ![Entity Drilldown](assests/dashboard3.png)
    Select any specific user, service account, or device to investigate its complete risk timeline, viewing exactly when and why its behaviour changed.
 
 ---
