@@ -48,6 +48,10 @@ RUN mkdir -p data models_saved report && \
 
 USER appuser
 
+# Run training to generate synthetic data and models during the build process
+# so they are baked into the image for Render
+RUN python src/train.py
+
 EXPOSE 8501
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
