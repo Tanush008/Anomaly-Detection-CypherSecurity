@@ -349,25 +349,37 @@ All 15 features are **causal** — computed only from an event and what preceded
 
 ---
 
-## Dashboard
+## Dashboard (Analyst View)
+
+The system includes a fully interactive Streamlit dashboard designed with a deliberately calm, human-centric aesthetic (warm slate tones, legible typography) rather than harsh, high-contrast defaults. This ensures analysts can monitor risk for hours without eye strain.
+
+> **Note:** To add screenshots to this README, save the images into an `assets/` folder in this repository, and uncomment the image links below!
+
+<!-- ![Dashboard Main View](assets/dashboard_main.png) -->
 
 ```bash
 streamlit run dashboard/app.py
 # Opens at http://localhost:8501
 ```
 
-The dashboard requires `data/scored_logs.csv` — run `python src/train.py` first.
+*(Requires `data/scored_logs.csv` — run `python src/train.py` first)*
 
-### Sections
+### Key Capabilities
 
-| Section | Description |
-|---|---|
-| **Summary metrics** | Total events, eval-window events, unique entities, true anomalies, cold-start count |
-| **Detected alerts chart** | Bar chart of detected patterns (excluding `normal_baseline`) |
-| **Precision @ top 1%** | Out-of-time precision metric on the held-out eval window |
-| **Live feed** | Simulated replay — one example per attack pattern + benign context events, streamed in-place with risk color coding (🔴 ≥ 60 / 🟡 ≥ 30 / 🟢 < 30) |
-| **Alert table** | Filterable by risk score, entity type, and data split (train/eval) — shows explanation column |
-| **Entity drill-down** | Select any entity → highest-risk event + explanation + risk timeline scatter chart |
+1. **Executive Summary & True-Positive Metrics**
+   Real-time metrics focusing on out-of-time precision. We explicitly show the model's accuracy on *held-out data* so analysts know exactly how trustworthy the alerts are.
+
+2. **Simulated Live Replay Feed**
+   <!-- ![Live Feed](assets/dashboard_feed.png) -->
+   A chronological stream of events dynamically color-coded by risk (🔴 Critical, 🟡 Warning, 🟢 Safe). Demonstrates how the system surfaces anomalies instantly in a live environment.
+
+3. **Triage & Alert Table**
+   <!-- ![Alert Table](assets/dashboard_alerts.png) -->
+   A filterable view of all flagged events, including the **human-readable explanation** combining triggered rules and SHAP feature attributions.
+
+4. **Entity Drill-down & Timeline**
+   <!-- ![Entity Drilldown](assets/dashboard_drilldown.png) -->
+   Select any specific user, service account, or device to investigate its complete risk timeline, viewing exactly when and why its behaviour changed.
 
 ---
 
